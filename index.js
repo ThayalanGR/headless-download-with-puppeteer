@@ -11,6 +11,15 @@ const downloadDirectory = path.resolve(__dirname, 'downloaded');
 const app = express();
 const PORT = process.env.PORT || 2000;
 
+
+app.get("/", (req, res) => {
+    res.send({
+        status: true,
+        message: "headless service up and running",
+        urlToDownloadfile: 'https://headless-download.herokuapp.com/downloadfile'
+    })
+})
+
 app.get("/downloadfile", async (req, res) => {
     try {
         const browser = await puppeteer.launch({
