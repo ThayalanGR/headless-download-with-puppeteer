@@ -37,11 +37,6 @@ app.get("/downloadfile", async (req, res) => {
         let file = fileToSend;
         let filename = path.basename(file);
         file = path.resolve(downloadDirectory, filename);
-        // const mimetype = mime.getType(file);
-        // res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-        // res.setHeader('Content-type', mimetype);
-        // const filestream = fs.createReadStream(file);
-        // filestream.pipe(res);
         res.download(file);
         setTimeout(() => {
             clearDownloadDirectoryAsynchronusly();
