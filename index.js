@@ -2,8 +2,6 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 const express = require("express");
 const fs = require('fs');
-const mime = require('mime');
-
 
 const url = "https://www.ccilindia.com/FPIHome.aspx";
 const buttonToClickId = "#btnFPISWH";
@@ -39,11 +37,12 @@ app.get("/downloadfile", async (req, res) => {
         let file = fileToSend;
         let filename = path.basename(file);
         file = path.resolve(downloadDirectory, filename);
-        const mimetype = mime.getType(file);
-        res.setHeader('Content-disposition', 'attachment; filename=' + filename);
-        res.setHeader('Content-type', mimetype);
-        const filestream = fs.createReadStream(file);
-        filestream.pipe(res);
+        // const mimetype = mime.getType(file);
+        // res.setHeader('Content-disposition', 'attachment; filename=' + filename);
+        // res.setHeader('Content-type', mimetype);
+        // const filestream = fs.createReadStream(file);
+        // filestream.pipe(res);
+        res.download(file);
         setTimeout(() => {
             clearDownloadDirectoryAsynchronusly();
         }, 10000);
