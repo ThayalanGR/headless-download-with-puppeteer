@@ -52,13 +52,9 @@ app.get("/downloadfile", async (req, res) => {
             message: error.message
         })
     }
-
 })
 
-
 app.listen(PORT, () => console.log("Headless Puppeteer file download server up and running on Port - ", +PORT));
-
-
 
 const clearDownloadDirectoryAsynchronusly = async () => {
     try {
